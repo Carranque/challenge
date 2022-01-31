@@ -1,4 +1,4 @@
-#Consideraciones y configuración previa
+# Consideraciones y configuración previa
 
 El IDE utilizado ha sido IntelliJ IDEA 2021.3.1 (Community Edition)
 
@@ -14,13 +14,13 @@ Aunque se sugiere el uso de una aplicación externa (postman) para invocar los e
 
 NOTA: Además de _accounts-controller_ aparece en swagger-ui un _basic-error-controller_ no relevante al proyecto como parte de la generación automática tras el escaneo de las librerias incluidas en el proyecto. Con configuración adicional es posible hacer que no se muestre, sin embargo por simplicidad y al estar fuera del alcance de la prueba se ha mantenido.
 
-#Consideraciones sobre el desarrollo de la funcionalidad solicitada
+# Consideraciones sobre el desarrollo de la funcionalidad solicitada
 
-Se implementa un nuevo endpoint POST en _AccountController_ para poder realizar transferencias, que espera la información de la transferencia en el RequestBody con la estructura implementada en el POJO Transfer, sobre el que se realizan algunas de las validaciones indicadas. El resto de las validaciones así como el envío de las notificaciones al originante y destinatario de la trasferencia se realizan en _AccountService_, así como la llamada a _AccountRepositoryInMemory_ que realiza la transferencia empleando métodos thread-safe sobre la estructura de datos utilizada para almacenar la información de las cuentas (ConcurrentHashMap).
+Se implementa un nuevo endpoint POST en _AccountController_ para poder realizar transferencias, que espera la información de la transferencia en el RequestBody con la estructura implementada en el POJO Transfer, sobre el que se realizan algunas de las validaciones indicadas. El resto de las validaciones así como el envío de las notificaciones al originante y destinatario de la trasferencia se realizan en _AccountService_, además de la llamada a _AccountRepositoryInMemory_ que realiza la transferencia empleando métodos thread-safe sobre la estructura de datos utilizada para almacenar la información de las cuentas (ConcurrentHashMap).
 
 En cuanto a los tests, se han implementado a nivel de todas las capas (Controller, Service, Repository) de acuerdo a las reglas de negocio indicadas, incluyendo un test para validar que la transferencia funciona correctamente en entornos concurrentes, usando la librería sugerida Thread Weaver.
 
-#Mejoras y cambios para convertir la aplicación en un producto entregable
+# Mejoras y cambios para convertir la aplicación en un producto entregable
 
 - BBDD: Con un modelo de datos en memoria como el proporcionado la aplicación no es útil. Es necesario proporcionar una BBDD, que además de persistencia real, proporcionará transaccionalidad, detalle importante para las transferencias que constan de dos operaciones, retirada de saldo de una cuenta e incremento en otra, lo que debería ser una operación atómica (o se realizan ambas o ninguna).
 - Escalabilidad: Mantener la aplicación correctamente estructurada, agrupando la funcionalidad en módulos y manteniendolos lo más desacoplados posibles, pudiendo incluso desplegarlos de forma independiente, haciendo uso de una BBDD común.
@@ -28,7 +28,7 @@ En cuanto a los tests, se han implementado a nivel de todas las capas (Controlle
 - Auditoría de operaciones: Operaciones relevantes como las transferencias de saldo deberían quedar registradas en detalle para poder trazarlas en caso que sea necesario. Ampliando el modelo de datos e incluyendo alguna tabla especifica para ello podría ser una solución.
 - Uso de contenedores: La aplicación podría ser desplegada en contenedores Docker, lo que permitiría ejecutarla facilmente en diferentes entornos según las necesidades.
 
-#Resultado gradle build antes de la entrega
+# Resultado gradle build antes de la entrega
 ```
 E:\Carranque\Desktop\challenge>gradlew build
 :compileJava UP-TO-DATE

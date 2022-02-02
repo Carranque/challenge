@@ -14,7 +14,7 @@ springdoc-openapi-ui:1.3.9 dependency has been included to automatically generat
 
 # Development
 
-A new POST endpoint has been implemented in _AccountController_ to perform money transfers between accounts. The transfer information is expected in the RequestBody with the format implemented in the Transfer POJO, that already includes some of the requested validations. Notification sending to account owners and some other validations are performed in _AccountService_, while the transfer itself is done in _AccountRepositoryInMemory_ using thread-safe methods available in the ConcurrentHashMap class.
+A new POST endpoint has been implemented in _AccountController_ to perform money transfers between accounts. The transfer information is expected in the RequestBody with the format implemented in the _Transfer_ POJO, that already includes some of the requested validations. Notification sending to account owners and some other validations are performed in _AccountService_, while the transfer itself is done in _AccountRepositoryInMemory_ using thread-safe methods available in the ConcurrentHashMap class.
 
 Regarding tests, they have been implemented for all layers (Controller, Service and Repository) according to provided business rules, including some that checks there are no concurrency issues in the implementation.
 

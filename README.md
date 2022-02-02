@@ -4,11 +4,11 @@ IntelliJ IDEA 2021.3.1 (Community Edition) used as IDE.
 
 Oracle JDK 1.8.0_321 used after checking in _build.gradle_ that source code compatibility is set to 1.8.
 
-The project is using Spring Boot 1.5.4.RELEASE and no gradle wrapper included on it:
+The project is using Spring Boot 1.5.4.RELEASE and no gradle wrapper is included on it:
 1. [Spring Boot 1.5.X.RELEASE DOCS](https://docs.spring.io/spring-boot/docs/1.5.x/reference/htmlsingle/#getting-started-system-requirements) states that compatible gradle versions are [2.9, 3.x]
 2. After downloading Gradle 3.5.1 a wrapper is generated with _gradle wrapper_ and then included into the project
 3. After that the project builds successfully using _gradlew build_ and no errors are shown in the IDE
-4. Project starts properly on port 18080 as configured _application.yml_
+4. Project starts properly on port 18080 as configured in _application.yml_
 
 springdoc-openapi-ui:1.3.9 dependency has been included to automatically generate the implemented API documentation (including a swagger-ui interface) to be able to easily test the available endpoints. A proper configuration is also added in _application.yaml_ to redirect http://localhost:18080/ to the swagger-ui web page.
 
